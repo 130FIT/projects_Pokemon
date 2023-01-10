@@ -1,0 +1,165 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<style>
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  div.pokemon {
+    border-radius: 25px;
+    width: 200px;
+    margin: 20px;
+    text-align: center;
+    background-color: #e5e5e5;
+    transition-duration: 2s;
+  }
+  .pokemon_char{
+    margin: auto
+  }
+  div.pokemon:hover {
+    text-align: center;
+    width: auto;
+    margin: 20px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    transition-duration: 2s;
+
+  }
+  .pokemon_image {
+    width: 150px;
+    margin: 20px;
+  }
+
+  .info {
+    text-align: start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .type_name {
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .status {
+    background-color: #30A7D7;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 10px;
+  }
+
+  .h3_stat {
+    font-weight: bold;
+    font-size: 10px;
+    margin-top: 2px;
+  }
+
+  .stat {
+    text-align: right;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .stat_container {
+    border-radius: 5px;
+    width: 100%;
+    background-color: #ddd;
+  }
+  .hp {
+    background-color: #FF0000;
+    height: 15px;
+    font-weight: bold;
+  }
+  .attack{
+    background-color: #F08030;
+    height: 15px;
+    font-weight: bold;
+  }
+
+  .defense{
+    background-color: #F8D030;
+    height: 15px;
+    font-weight: bold;
+  }
+  .special-attack{
+    background-color: #6890F0;
+    height: 15px;
+    font-weight: bold;
+  }
+  .special-defense{
+    background-color: #78C850;
+    height: 15px;
+    font-weight: bold;
+  }
+  .speed{
+    background-color: #F85888;
+    height: 15px;
+    font-weight: bold;
+  }
+</style>
+
+<div class="container text-center pokemon" *ngFor="let item of pokedex" (mouseenter)="get_ability(item.id)"
+  (mouseleave)="clear_data()">
+  <div class="pokemon_info row align-items-start">
+    <div class="row">
+
+      <div class="col-6 pokemon_char">
+        <img src={{item.image}} class="pokemon_image">
+      </div>
+
+      <div class="col-6 info">
+        <ng-container *ngIf="pokemon_type">
+          <ng-container *ngIf="pokemon_name==item.name">
+            <h1>{{item.name}}</h1>
+            <div class="status">
+              <h3 class="h3_stat">HP</h3>
+              <div class="stat_container">
+                <div class="stat hp"[ngStyle]="{'width': getWidth(pokemon_stats[0].base_stat)}">{{pokemon_stats[0].base_stat}} </div>
+              </div>
+              <h3 class="h3_stat">Attack</h3>
+              <div class="stat_container">
+                <div class="stat attack"[ngStyle]="{'width': getWidth(pokemon_stats[1].base_stat)}">{{pokemon_stats[1].base_stat}} </div>
+              </div>
+              <h3 class="h3_stat">defense</h3>
+              <div class="stat_container">
+                <div class="stat defense"[ngStyle]="{'width': getWidth(pokemon_stats[2].base_stat)}">{{pokemon_stats[2].base_stat}} </div>
+              </div>
+              <h3 class="h3_stat">special-attack</h3>
+              <div class="stat_container">
+                <div class="stat special-attack"[ngStyle]="{'width': getWidth(pokemon_stats[3].base_stat)}">{{pokemon_stats[3].base_stat}} </div>
+              </div>
+              <h3 class="h3_stat">special-defense</h3>
+              <div class="stat_container">
+                <div class="stat special-defense"[ngStyle]="{'width': getWidth(pokemon_stats[4].base_stat)}">{{pokemon_stats[4].base_stat}} </div>
+              </div>
+              <h3 class="h3_stat">speed</h3>
+              <div class="stat_container">
+                <div class="stat speed" [ngStyle]="{'width': getWidth(pokemon_stats[5].base_stat)}">{{pokemon_stats[5].base_stat}} </div>
+              </div>
+            </div>
+            <h2 style="font-size: 20px;">Type</h2>
+            <div class="row">
+              <ng-container *ngFor="let type of pokemon_type">
+                <div class="col-2  type_name" [ngStyle]="{'background-color': getColor(type.type.name)}">
+                  {{type.type.name}}</div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+    </div>
+    <div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"></script>
